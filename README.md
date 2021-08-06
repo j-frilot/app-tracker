@@ -17,12 +17,22 @@ Application Tracter is a simple person app that can be used to keep track of job
 
 ## Installation
 
+### Database Setup (Optional)
+
 1. vim server/.env
     - input database credentials into env file.
-2. cd server
-3. npm install -> npm start
-4. cd ../client
-5. npm install -> npm start
+
+### Without Database (Optional)
+
+2.  cd client/src/data/joblist.js
+    -   edit this object in order to keep track with data. remove/comment code related to server.
+
+### App Setup
+
+3.  cd server
+4.  npm install -> npm start
+5.  cd ../client
+6.  npm install -> npm start
 
 ## Usage
 
