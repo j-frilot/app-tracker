@@ -1,6 +1,6 @@
-DROP TABLE joblist;
+DROP TABLE demo_job_list;
 
-CREATE TABLE joblist (
+CREATE TABLE demo_job_list (
     job_id          serial PRIMARY KEY,
     title           VARCHAR(100) NOT NULL,
     company         VARCHAR(100) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE joblist (
     reply_info      VARCHAR(300)
 );
 
-INSERT INTO joblist (title, company, date_applied, date_denied, date_interview, reply_info)
+INSERT INTO demo_job_list (title, company, date_applied, date_denied, date_interview, reply_info)
 VALUES      ('Job A', 'Company A', '01-03-2021', '03-29-2021', NULL, NULL),
             ('Job B', 'Company B', '02-15-2021', ''          , NULL, NULL),
             ('Job C', 'Company C', '03-02-2021', ''          , NULL, NULL),

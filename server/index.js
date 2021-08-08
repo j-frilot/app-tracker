@@ -22,13 +22,6 @@ app.use(function (req, res, next) {
 app.get("/", (req, res) => {
     res.send("<h1> This is for testing purposes only.</h1>");
 });
-//application-tracker-jf.netlify.app
-https: app.get("/api", (req, res) => {
-    res.json({
-        "All Jobs": `https://application-tracker-api.herokuapp.com/api/jobs`,
-        "New Jobs": `https://application-tracker-api.herokuapp.com/api/newjob`
-    });
-});
 
 ///////// all jobs, landing page, default
 

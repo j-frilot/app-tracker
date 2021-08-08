@@ -10,6 +10,7 @@ client/package-lock.json
 
 # production
 client/build
+client/.netlify
 
 # misc
 client/.DS_Store
@@ -24,3 +25,4 @@ client/yarn-error.log*
 ## server
 server/node_modules
 server/package-lock.json
+server/.env
