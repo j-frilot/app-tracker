@@ -2,8 +2,9 @@ const express = require("express");
 const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
-const client = require("./db/dbconfig");
+const pool = require("./db/dbconfig");
 const path = require("path");
+const PORT = process.env.PORT || 4000;
 
 app.use(helmet());
 app.use(cors());
@@ -19,18 +20,34 @@ app.use(function (req, res, next) {
 
 ////////////////////// ROUTING /////////////////////////
 
-app.get("/", (req, res) => {
-    res.send("<h1> This is for testing purposes only.</h1>");
+// app.get("/", (req, res) => {
+//     res.send("<h1> This is for testing purposes only.</h1>");
+// });
+
+app.get("/api", (req, res) => {
+    res.json({
+        "All Jobs": `http://localhost:${PORT}/api/jobs`,
+        "New Jobs": `http://localhost:${PORT}/api/newjob`
+    });
 });
 
-///////// all jobs, landing page, default
-
-app.get("/api/jobs", async (req, res) => {
+app.get("/api/jobs", (req, res) => {
     try {
-        const allJobs = await client.query(
-            "SELECT * FROM joblist ORDER BY date_applied DESC;"
+        const allJobs = pool.query(
+            "SELECT * FROM demo_job_list ORDER BY date_applied DESC",
+            (error, results) => {
+                if (!error) {
+                    if (results.length == 1) {
+                        res.json(...results);
+                        res.render(...results);
+                    } else {
+                        res.json(results);
+                    }
+                } else {
+                    console.log("Query Error", error);
+                }
+            }
         );
-        res.json(allJobs.rows);
     } catch (err) {
         console.error(err.message);
     }
@@ -38,7 +55,7 @@ app.get("/api/jobs", async (req, res) => {
 
 //////// add jobs, POST
 
-app.post("/api/newjob", async (req, res) => {
+app.post("/api/newjob", (req, res) => {
     const title = req.body.title;
     const company = req.body.company;
     const date_applied = req.body.date_applied;
@@ -46,7 +63,7 @@ app.post("/api/newjob", async (req, res) => {
     const date_interview = req.body.date_interview;
     const reply_info = req.body.reply_info;
     const text =
-        "INSERT INTO joblist (title, company, date_applied, date_denied, date_interview, reply_info) VALUES ($1, $2, $3, $4, $5, $6)";
+        "INSERT INTO demo_job_list (title, company, date_applied, date_denied, date_interview, reply_info) VALUES (?, ?, ?, ?, ?, ?)";
     const values = [
         title,
         company,
@@ -56,16 +73,24 @@ app.post("/api/newjob", async (req, res) => {
         reply_info
     ];
     try {
-        const addJob = await client.query(text, values);
-        res.json(addJob.rows);
+        const addJob = pool.query(text, values, (error, results) => {
+            if (!error) {
+                if (results.length == 1) {
+                    res.json(...results);
+                    res.render(...results);
+                } else {
+                    res.json(results);
+                }
+            } else {
+                console.log("Query Error", error);
+            }
+        });
     } catch (err) {
         console.error(err.message);
     }
 });
 
 ///////////////////////////////////////////////////////
-
-const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
