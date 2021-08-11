@@ -3,7 +3,6 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const pool = require("./db/dbconfig");
-const path = require("path");
 const PORT = process.env.PORT || 4000;
 
 app.use(helmet());
@@ -13,24 +12,10 @@ app.use(express.json());
 // add headers to incoming req
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    // res.setHeader("Access-Control-Allow-Headers", "*");
-
     next();
 });
 
-////////////////////// ROUTING /////////////////////////
-
-// app.get("/", (req, res) => {
-//     res.send("<h1> This is for testing purposes only.</h1>");
-// });
-
-app.get("/api", (req, res) => {
-    res.json({
-        "All Jobs": `http://localhost:${PORT}/api/jobs`,
-        "New Jobs": `http://localhost:${PORT}/api/newjob`
-    });
-});
-
+//////////     ALL JOBS IN DESC ORDER FROM DATE APPLIED      //////////
 app.get("/api/jobs", (req, res) => {
     try {
         const allJobs = pool.query(
@@ -53,8 +38,7 @@ app.get("/api/jobs", (req, res) => {
     }
 });
 
-//////// add jobs, POST
-
+//////////     ADD A JOB      //////////
 app.post("/api/newjob", (req, res) => {
     const title = req.body.title;
     const company = req.body.company;
@@ -90,7 +74,31 @@ app.post("/api/newjob", (req, res) => {
     }
 });
 
-///////////////////////////////////////////////////////
+// //////////     DELETE JOB      //////////
+// app.delete("/api/jobs/:id", (req, res) => {
+//     const job_id = req.body.job_id;
+//     try {
+//         const deleteJob = pool.query(
+//             `DELETE FROM demo_job_list WHERE job_id = ?`,
+//             [job_id],
+//             (error, results) => {
+//                 if (!error) {
+//                     if (results.length == 1) {
+//                         res.json(...results);
+//                         res.render(...results);
+//                     } else {
+//                         res.json(results);
+//                     }
+//                     return "Job deleted";
+//                 } else {
+//                     console.log("Query Error", error);
+//                 }
+//             }
+//         );
+//     } catch (err) {
+//         console.error(err.message);
+//     }
+// });
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
