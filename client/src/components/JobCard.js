@@ -1,46 +1,14 @@
-// import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
 import Accordian from "./Accordian";
 import Card from "react-bootstrap/Card";
 import DeleteButton from "./DeleteButton";
 import { FaUserEdit, FaUserFriends, FaUserSlash } from "react-icons/fa";
 
 const JobCard = (props) => {
-    //     const [jobs, deletedJobs] = useState([]);
-    // const job_id = props
-    //     const deleteJobFunction = () => {
-    //         fetch(`http://localhost:4000/api/jobs/$props.idx`, {
-    //             method: "DELETE"
-    //         })
-    //             .then((response) => response.json())
-    //             .then((response) => {
-    //                 console.log(response);
-    //                 deletedJobs(response);
-    //                 console.log(jobs);
-    //                 console.log(deletedJobs);
-    //             });
-    //     };
-
-    //     useEffect(() => {
-    //         console.log(jobs);
-    //     });
-
-    // const deleteJobFunction = () => {
-    //     console.log(props.job_id);
-    //     fetch(`http://localhost:4000/api/jobs/${props.job_id}`, {
-    //         method: "DELETE"
-    //     }).then((res) => {
-    //         res.json().then((resp) => {
-    //             console.log(resp);
-    //         });
-    //     });
-    // };
-
     return (
         <Card className="job-card mt-3">
             <Card.Title className="text-center p-3">
                 {props.title}
-                <DeleteButton />
+                <DeleteButton id={props.id} />
             </Card.Title>
 
             <Card.Subtitle className="text-center">

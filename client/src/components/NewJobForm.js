@@ -13,20 +13,8 @@ const NewJob = () => {
     const [date_interview, set_date_interview] = useState("");
     const [reply_info, set_reply_info] = useState("");
 
-    // function to send new job data to db
     const addJobFunction = (event) => {
         event.preventDefault();
-
-        // logging out each field as a test to check
-        console.log(
-            title,
-            company,
-            date_applied,
-            date_denied,
-            date_interview,
-            reply_info
-        );
-
         const local = "http://localhost:4000/api/newjob";
 
         fetch(local, {
@@ -50,16 +38,8 @@ const NewJob = () => {
             .catch((error) => {
                 console.error("Error:", error);
             });
+        window.location.reload();
     };
-
-    // var theDate = new Date();
-    // var maxDate =
-    //     theDate.getFullYear() +
-    //     "-" +
-    //     theDate.getDate() +
-    //     "-" +
-    //     (theDate.getMonth() + 1);
-    // console.log(maxDate);
 
     return (
         <Accordion className="py-5">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import joblist from "../data/joblist";
+// import joblist from "../data/joblist";   use this with list in datasection if not using db
 import JobCard from "./JobCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -20,9 +20,9 @@ const CardSection = () => {
     return (
         <Row>
             {joblist.map((jobs) => (
-                <Col xs={12} sm={6} md={4} key={jobs.job_id}>
+                <Col xs={12} sm={6} md={4} key={jobs.id}>
                     <JobCard
-                        job_id={jobs.job_id}
+                        id={jobs.id}
                         title={jobs.title}
                         company={jobs.company}
                         date_applied={jobs.date_applied}

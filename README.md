@@ -4,7 +4,7 @@
 
 ## Description
 
-Application Tracter is a simple person app that can be used to keep track of job applications. It made with react, express, and postgreql serving as the database. The configuration is setup so that it can easily be switched to mysql. The core functions of the app is to be able to add details about job applications, store applications, update applications, and delete applications.
+Application Tracter is a simple person app that can be used to keep track of job applications. It made with react, express, and postgreql serving as the database. The configuration is setup so that it can easily used with mysql. The core functions of the app is to be able to add details about job applications, store applications, update applications, and delete applications.
 
 ![screenshot](https://res.cloudinary.com/dsip2gx3i/image/upload/c_scale,q_auto,w_800/v1628213237/misc/app-tracker-screenshot.jpg)
 
@@ -37,6 +37,12 @@ Application Tracter is a simple person app that can be used to keep track of job
 ## Usage
 
 Storing unencrypted credentials is unsecure.. It is not recommended to use this for public use without modification for security.
+
+https://reactjs.org/
+https://react-bootstrap.github.io/
+https://react-icons.github.io/react-icons
+https://expressjs.com/
+https://github.com/sidorares/node-mysql2#readme
 
 ## Questions
 
