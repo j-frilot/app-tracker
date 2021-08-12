@@ -3,7 +3,7 @@ const pool = require("../db/dbconfig");
 const allqueries = {
     table: "demo_job_list",
     //////////     ALL JOBS BY DATE APPLIED, RECENT TO LAST      //////////
-    allJobs: (req, res) => {
+    dateDesc: (req, res) => {
         try {
             pool.query(
                 "SELECT * FROM demo_job_list ORDER BY date_applied DESC",
@@ -50,7 +50,7 @@ const allqueries = {
     denied: (req, res) => {
         try {
             pool.query(
-                `SELECT * FROM demo_job_list WHERE date_denied IS NOT NULL ORDER BY date_denied DESC`,
+                `SELECT * FROM demo_job_list WHERE date_denied <> ' ' ORDER BY date_denied DESC`,
                 (error, results) => {
                     if (!error) {
                         if (results.length == 1) {
@@ -68,11 +68,11 @@ const allqueries = {
             console.error(err.message);
         }
     },
-    //////////     JOBS ORDERED BY INTERVIEW      //////////
-    interview: (req, res) => {
+    //////////     JOBS ORDERED BY TITLE A-Z      //////////
+    titleAsc: (req, res) => {
         try {
             pool.query(
-                `SELECT * FROM demo_job_list WHERE date_interview IS NOT NULL ORDER BY date_interview DESC`,
+                `SELECT * FROM demo_job_list ORDER BY title ASC`,
                 (error, results) => {
                     if (!error) {
                         if (results.length == 1) {

@@ -16,32 +16,6 @@ app.use(function (req, res, next) {
 });
 app.use("/", require("./api/routes"));
 
-// //////////     DELETE JOB      //////////
-// app.delete("/api/jobs/:id", (req, res) => {
-//     const job_id = req.body.job_id;
-//     try {
-//         const deleteJob = pool.query(
-//             `DELETE FROM demo_job_list WHERE job_id = ?`,
-//             [job_id],
-//             (error, results) => {
-//                 if (!error) {
-//                     if (results.length == 1) {
-//                         res.json(...results);
-//                         res.render(...results);
-//                     } else {
-//                         res.json(results);
-//                     }
-//                     return "Job deleted";
-//                 } else {
-//                     console.log("Query Error", error);
-//                 }
-//             }
-//         );
-//     } catch (err) {
-//         console.error(err.message);
-//     }
-// });
-
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
 });
