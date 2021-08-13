@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import joblist from "../data/joblist";   use this with list in datasection if not using db
 import JobCard from "../JobCard";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 const TitleAsc = () => {
     const [joblist, setJoblist] = useState([]);
@@ -15,13 +13,12 @@ const TitleAsc = () => {
             .then((res) => {
                 setJoblist(res);
             });
-        console.log(joblist);
     }, []);
 
     return (
-        <Row>
+        <section className="row">
             {joblist.map((jobs) => (
-                <Col xs={12} sm={6} md={4} key={jobs.id}>
+                <div className="col-xs-12 col-sm-6 col-md-4" key={jobs.id}>
                     <JobCard
                         id={jobs.id}
                         title={jobs.title}
@@ -31,9 +28,9 @@ const TitleAsc = () => {
                         date_denied={jobs.date_denied}
                         reply_info={jobs.reply_info}
                     />
-                </Col>
+                </div>
             ))}
-        </Row>
+        </section>
     );
 };
 

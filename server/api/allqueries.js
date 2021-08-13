@@ -25,7 +25,7 @@ const allqueries = {
         }
     },
     //////////     ALL JOBS BY DATE APPLIED, LAST TO RECENT      //////////
-    allJobsAsc: (req, res) => {
+    dateAsc: (req, res) => {
         try {
             pool.query(
                 "SELECT * FROM demo_job_list ORDER BY date_applied",

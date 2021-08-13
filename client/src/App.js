@@ -1,5 +1,4 @@
 import { Switch, Route } from "react-router-dom";
-import Container from "react-bootstrap/esm/Container";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import NewJobForm from "./components/NewJobForm";
@@ -9,7 +8,7 @@ import TitleAsc from "./components/pages/TitleAsc";
 
 function App() {
     return (
-        <Container>
+        <main className="container">
             <Header />
             <NewJobForm />
             <Navigation />
@@ -24,7 +23,7 @@ function App() {
                     <DateDesc />
                 </Route>
             </Switch>
-        </Container>
+        </main>
     );
 }
 

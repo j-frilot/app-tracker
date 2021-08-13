@@ -1,18 +1,22 @@
 import { NavLink } from "react-router-dom";
+import { FaArrowDown } from "react-icons/fa";
 
 const Navigation = () => {
     return (
-        <ul>
-            <li>
-                <NavLink to="/">DateDesc</NavLink>
-            </li>
-            <li>
+        <section className="d-flex justify-content-center">
+            <button className="btn btn-outline-info">
+                <NavLink to="/">
+                    Date <FaArrowDown />
+                </NavLink>
+            </button>
+
+            <button className="btn btn-outline-info">
                 <NavLink to="/denied">Denied</NavLink>
-            </li>
-            <li>
-                <NavLink to="/title">Title</NavLink>
-            </li>
-        </ul>
+            </button>
+            <button className="btn btn-outline-info">
+                <NavLink to="/title">Title A-Z </NavLink>
+            </button>
+        </section>
     );
 };
 
